@@ -1,0 +1,4 @@
+../board/peripherals.c:137:6:BOARD_TIMER_init	16	static
+../board/peripherals.c:173:6:BOARD_ACCEL_I2C_init	8	static
+../board/peripherals.c:182:6:BOARD_InitPeripherals	8	static
+../board/peripherals.c:192:6:BOARD_InitBootPeripherals	8	static

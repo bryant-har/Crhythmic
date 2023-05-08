@@ -1,0 +1,14 @@
+../drivers/fsl_clock.h:601:20:CLOCK_EnableClock	24	static
+../drivers/fsl_clock.h:612:20:CLOCK_DisableClock	24	static
+../drivers/fsl_tpm.c:74:17:TPM_GetInstance	24	static
+../drivers/fsl_tpm.c:93:6:TPM_Init	16	static
+../drivers/fsl_tpm.c:132:6:TPM_Deinit	16	static
+../drivers/fsl_tpm.c:147:6:TPM_GetDefaultConfig	16	static
+../drivers/fsl_tpm.c:178:10:TPM_SetupPwm	40	static
+../drivers/fsl_tpm.c:382:6:TPM_UpdatePwmDutycycle	32	static
+../drivers/fsl_tpm.c:438:6:TPM_UpdateChnlEdgeLevelSelect	24	static
+../drivers/fsl_tpm.c:472:6:TPM_SetupInputCapture	16	static
+../drivers/fsl_tpm.c:517:6:TPM_SetupOutputCompare	32	static
+../drivers/fsl_tpm.c:723:6:TPM_EnableInterrupts	24	static
+../drivers/fsl_tpm.c:746:6:TPM_DisableInterrupts	24	static
+../drivers/fsl_tpm.c:769:10:TPM_GetEnabledInterrupts	24	static
