@@ -1,6 +1,0 @@
-/Users/bryanthar/Documents/MCUXpressoIDE_11.7.1_9221/workspace/frdmkl46z_bubble_peripheral/drivers/fsl_clock.h:643:20:CLOCK_SetLpsci0Clock	16	static
-../board/board.c:47:6:BOARD_InitDebugConsole	16	static
-../board/board.c:64:10:BOARD_I2C_Send	56	static
-../board/board.c:85:10:BOARD_I2C_Receive	56	static
-../board/board.c:106:10:BOARD_Accel_I2C_Send	48	static
-../board/board.c:113:10:BOARD_Accel_I2C_Receive	40	static
