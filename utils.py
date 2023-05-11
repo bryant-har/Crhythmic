@@ -83,10 +83,11 @@ def releaseall():
 
 def left():
     if is_pressed("d"):
+        print("ewfew")
         releaseall()
     elif not is_pressed("a"):
         releaseall()
-        press_and_release("a")
+        press("a")
 
 
 def right():
@@ -94,7 +95,7 @@ def right():
         releaseall()
     elif not is_pressed("d"):
         releaseall()
-        press_and_release("d")
+        press("d")
 
 
 def up():
@@ -102,7 +103,7 @@ def up():
         releaseall()
     elif not is_pressed("w"):
         releaseall()
-        press_and_release("w")
+        press("w")
 
 
 def down():
@@ -110,7 +111,7 @@ def down():
         releaseall()
     elif not is_pressed("s"):
         releaseall()
-        press_and_release("s")
+        press("s")
 
 
 def lefta():

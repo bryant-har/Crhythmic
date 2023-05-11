@@ -13,7 +13,6 @@ def loop(port):
             if vec is not None:
                 utils.actuate_wasd(vec)
                 print("\nTime to Actuate: " + str(time() - a))
-                print()
                 ser.reset_input_buffer()
 
 
