@@ -152,5 +152,5 @@ int main(void)
         j--;
 
         /* Print out acceleration data. */
-        PRINTF("%d\n%d\n%d\n", xData,yData,zData);    }
+        PRINTF("%dx%dy%dz", xData,yData,zData);    }
 }

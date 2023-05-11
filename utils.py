@@ -1,21 +1,141 @@
 import numpy as np
+from keyboard import press, release, is_pressed, press_and_release
+from time import sleep
+from pyautogui import keyUp, keyDown
 
 
 def get(num_samples, thresh, ser):
-    xyz = []
+    xy = []
+    _ = ser.read_until(b"z")
     for _ in range(num_samples):
-        tmp = []
-        while len(tmp) < 3:
-            a = ser.readline()[:-1]
-            if a:
-                tmp.append(int(a))
-            else:
-                print("Invalid Byte Discarded")
-                tmp = [0, 0, 0]
-                break
-        tmp[1] = 0  # Discard y coordinate because we don't want to break the monitor?
-        tmp[2] -= 2000
+        x = int(ser.read_until(b"x")[:-1])
+        y = int(ser.read_until(b"y")[:-1])
+        _ = int(ser.read_until(b"z")[:-1])
+        tmp = [x, y]
         if np.linalg.norm(tmp) > thresh:
-            xyz.append(tmp)
+            xy.append(tmp)
 
-    return np.average(xyz, axis=0) if len(xyz) > 0 else None  # motion detected
+    return np.average(xy, axis=0) if len(xy) > 0 else None  # motion detected
+
+
+def actuate_wasd(xy):
+    idx = np.argmax(abs(xy))
+    if idx == 0:
+        if xy[0] > 0:
+            down()
+        else:
+            up()
+    else:
+        if xy[1] > 0:
+            right()
+        else:
+            left()
+
+
+def actuate_arrow(xy):
+    idx = np.argmax(abs(xy))
+    if idx == 0:
+        if xy[0] > 0:
+            downa()
+        else:
+            upa()
+    else:
+        if xy[1] > 0:
+            righta()
+        else:
+            lefta()
+
+
+def actuate_wasd(xy):
+    idx = np.argmax(abs(xy))
+    if idx == 0:
+        if xy[0] > 0:
+            down()
+        else:
+            up()
+    else:
+        if xy[1] > 0:
+            right()
+        else:
+            left()
+
+
+def actuate_wasd_single(xy):
+    idx = np.argmax(abs(xy))
+    if idx == 0:
+        if xy[0] > 0:
+            press_and_release("d")
+        else:
+            press_and_release("a")
+    else:
+        if xy[1] > 0:
+            press_and_release("w")
+        else:
+            press_and_release("s")
+
+
+def releaseall():
+    release("w")
+    release("a")
+    release("s")
+    release("d")
+
+
+def left():
+    if is_pressed("d"):
+        releaseall()
+    elif not is_pressed("a"):
+        releaseall()
+        press_and_release("a")
+
+
+def right():
+    if is_pressed("a"):
+        releaseall()
+    elif not is_pressed("d"):
+        releaseall()
+        press_and_release("d")
+
+
+def up():
+    if is_pressed("s"):
+        releaseall()
+    elif not is_pressed("w"):
+        releaseall()
+        press_and_release("w")
+
+
+def down():
+    if is_pressed("w"):
+        releaseall()
+    elif not is_pressed("s"):
+        releaseall()
+        press_and_release("s")
+
+
+def lefta():
+    if is_pressed("right arrow"):
+        release("right arrow")
+    else:
+        press_and_release("left arrow")
+
+
+def righta():
+    if is_pressed("left arrow"):
+        release("left arrow")
+    else:
+        press_and_release("right arrow")
+
+
+def upa():
+    if is_pressed("down arrow"):
+        release("down arrow")
+    else:
+        press_and_release("up arrow")
+
+
+def downa():
+    if is_pressed("up arrow"):
+        release("up arrow")
+    else:
+        press_and_release("down arrow")

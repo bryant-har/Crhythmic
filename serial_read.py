@@ -1,6 +1,5 @@
 import serial
 from time import sleep
-import numpy as np
 import utils
 
 
@@ -9,10 +8,11 @@ def loop(port):
         while ser.is_open:
             ser.reset_input_buffer()
             # sometimes hallucinates big motions so make threshold > 4000 usu
-            vec = utils.get(50, 4000, ser)
+            vec = utils.get(50, 1000, ser)
             if vec is not None:
-                print(vec)  # max during interval
-                sleep(0.1)  # delay between inputs to prevent excessive input
+                utils.actuate_wasd(vec)
+                sleep(0.1)
+                ser.reset_input_buffer()
 
 
 if __name__ == "__main__":

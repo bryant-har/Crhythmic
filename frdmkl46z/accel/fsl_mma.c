@@ -34,6 +34,7 @@
 
 #include "fsl_mma.h"
 
+
 /******************************************************************************
  * Code
  ******************************************************************************/
@@ -49,7 +50,6 @@ status_t MMA_Init(mma_handle_t *handle, mma_config_t *config)
     handle->I2C_ReceiveFunc = config->I2C_ReceiveFunc;
     /* Set Slave Address. */    
     handle->slaveAddress = config->slaveAddress;
-
     if(MMA_ReadReg(handle, kMMA8451_WHO_AM_I, &val) != kStatus_Success)
     {
         return kStatus_Fail;
@@ -71,9 +71,14 @@ status_t MMA_Init(mma_handle_t *handle, mma_config_t *config)
         return kStatus_Fail;
     }
     /* Put the mma8451 into standby mode */
+    int delay = 0;
+    while(delay < 10000){
+    	delay += 1;
+    }
     if(MMA_ReadReg(handle, kMMA8451_CTRL_REG1, &val) != kStatus_Success)
     {
-        return kStatus_Fail;
+    	return kStatus_Fail;
+
     }
     val &= (uint8_t)(~(0x01));
     if(MMA_WriteReg(handle, kMMA8451_CTRL_REG1, val) != kStatus_Success)
