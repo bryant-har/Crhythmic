@@ -46,18 +46,18 @@ def actuate_arrow(xy):
             lefta()
 
 
-def actuate_wasd(xy):
+def actuate_wasd(xy, last):
     idx = np.argmax(abs(xy))
     if idx == 0:
         if xy[0] > 0:
-            down()
+            return down(last)
         else:
-            up()
+            return up(last)
     else:
         if xy[1] > 0:
-            right()
+            return right(last)
         else:
-            left()
+            return left(last)
 
 
 def actuate_wasd_single(xy):
@@ -81,37 +81,46 @@ def releaseall():
     release("d")
 
 
-def left():
-    if is_pressed("d"):
-        print("ewfew")
+def left(lastpressed):
+    if lastpressed == "d":
         releaseall()
-    elif not is_pressed("a"):
+        return ""
+    elif not lastpressed == "a":
         releaseall()
         press("a")
+    return "a"
 
 
-def right():
-    if is_pressed("a"):
+def right(lastpressed):
+    if lastpressed == "a":
         releaseall()
-    elif not is_pressed("d"):
+        return ""
+
+    elif not lastpressed == "d":
         releaseall()
         press("d")
+    return "d"
 
 
-def up():
-    if is_pressed("s"):
+def up(lastpressed):
+    if lastpressed == "s":
         releaseall()
-    elif not is_pressed("w"):
+        return ""
+
+    elif not lastpressed == "w":
         releaseall()
         press("w")
+    return "w"
 
 
-def down():
-    if is_pressed("w"):
+def down(lastpressed):
+    if lastpressed == "w":
         releaseall()
-    elif not is_pressed("s"):
+        return ""
+    elif not lastpressed == "s":
         releaseall()
         press("s")
+    return "s"
 
 
 def lefta():
