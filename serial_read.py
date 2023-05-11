@@ -1,5 +1,5 @@
 import serial
-from time import sleep
+from time import sleep, time
 import utils
 
 
@@ -7,11 +7,13 @@ def loop(port):
     with serial.Serial(port, 115200, timeout=1) as ser:
         while ser.is_open:
             ser.reset_input_buffer()
-            # sometimes hallucinates big motions so make threshold > 4000 usu
-            vec = utils.get(50, 1000, ser)
+            # sometimes hallucinates big motions so make threshold > 1000 usu
+            a = time()
+            vec = utils.get(10, 1000, ser)  # get 10 samples
             if vec is not None:
                 utils.actuate_wasd(vec)
-                sleep(0.1)
+                print("\nTime to Actuate: " + str(time() - a))
+                print()
                 ser.reset_input_buffer()
 
 
